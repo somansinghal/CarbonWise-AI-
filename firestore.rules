@@ -1,0 +1,84 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ==========================
+    // USER PROFILES
+    // ==========================
+    match /users/{userId} {
+
+      // User can read only their own profile
+      allow read: if request.auth != null
+                  && request.auth.uid == userId;
+
+      // User can create only their own profile
+      allow create: if request.auth != null
+                    && request.auth.uid == userId
+                    && request.resource.data.name is string
+                    && request.resource.data.email is string;
+
+      // User can update only their own profile
+      allow update: if request.auth != null
+                    && request.auth.uid == userId;
+
+      // No client-side deletes
+      allow delete: if false;
+    }
+
+    // ==========================
+    // PUBLIC LEADERBOARD
+    // ==========================
+    match /leaderboard/{entryId} {
+
+      // Everyone can view leaderboard
+      allow read: if true;
+
+      // Only authenticated users can write
+      allow create, update: if request.auth != null;
+
+      // No deletes
+      allow delete: if false;
+    }
+
+    // ==========================
+    // USER CHALLENGES
+    // ==========================
+    match /challenges/{userId} {
+
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+
+      allow delete: if false;
+    }
+
+    // ==========================
+    // USER AI REPORTS
+    // ==========================
+    match /reports/{userId} {
+
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+
+      allow delete: if false;
+    }
+
+    // ==========================
+    // USER ACTION PLANS
+    // ==========================
+    match /actionPlans/{userId} {
+
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+
+      allow delete: if false;
+    }
+
+    // ==========================
+    // DEFAULT DENY
+    // ==========================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

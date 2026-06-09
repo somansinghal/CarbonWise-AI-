@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="uploads/Untitled design.png">
+    <link rel="apple-touch-icon" href="uploads/Untitled design.png">
 </head>
 <body>
     <div class="bg-orb"></div>
@@ -15,8 +17,9 @@
     <div class="container">
         <!-- Navigation -->
         <nav class="water-glass animate-fade-up">
-            <div class="logo">
-                <i class="fa-solid fa-leaf text-gradient"></i> CarbonWise
+            <div class="logo" style="display:flex;align-items:center;gap:10px;">
+                <img src="uploads/Untitled design.png" alt="CarbonWise Logo" style="height:42px;width:42px;object-fit:contain;border-radius:50%;">
+                <span>CarbonWise</span>
             </div>
             <div style="display: flex; gap: 20px; align-items: center;">
                 <span id="user-greeting" style="font-weight: 500; font-size: 15px; color: var(--text-muted);"></span>
@@ -135,10 +138,24 @@
         </div>
 
         <footer class="water-glass animate-fade-up delay-3">
-            <div style="margin-bottom: 16px; font-weight: 800; font-size: 20px;">
-                <i class="fa-solid fa-leaf text-gradient"></i> CarbonWise AI
+            <div style="margin-bottom: 16px; font-weight: 800; font-size: 20px; display:flex; align-items:center; justify-content:center; gap:10px;">
+                <img src="uploads/Untitled design.png" alt="CarbonWise Logo" style="height:32px;width:32px;object-fit:contain;border-radius:50%;">
+                <span>CarbonWise AI</span>
             </div>
-            <p style="font-size: 13px; opacity: 0.5;">&copy; 2026 CarbonWise AI. Hackathon Submission.</p>
+
+            <div style="display:flex;justify-content:center;gap:24px;margin-bottom:16px;">
+                <a href="https://github.com/somansinghal/CarbonWise-AI-" target="_blank" rel="noopener noreferrer" style="color:#10b981;font-size:22px;">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/soman-singhal/" target="_blank" rel="noopener noreferrer" style="color:#10b981;font-size:22px;">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://x.com/SomanSinghal" target="_blank" rel="noopener noreferrer" style="color:#10b981;font-size:22px;">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+            </div>
+
+            <p style="font-size: 13px; opacity: 0.5;">&copy; 2026 CarbonWise AI.</p>
         </footer>
     </div>
 
@@ -171,5 +188,5 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="js/core.js"></script>
     <script src="js/dashboard.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a08f5a073c0e5ed5',t:'MTc4MDk5OTg4MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

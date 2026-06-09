@@ -1,0 +1,205 @@
+[debug] [2026-06-09T13:15:34.669Z] ----------------------------------------------------------------------
+[debug] [2026-06-09T13:15:34.676Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only hosting --debug
+[debug] [2026-06-09T13:15:34.676Z] CLI Version:   15.19.1
+[debug] [2026-06-09T13:15:34.676Z] Platform:      darwin
+[debug] [2026-06-09T13:15:34.676Z] Node Version:  v24.14.0
+[debug] [2026-06-09T13:15:34.676Z] Time:          Tue Jun 09 2026 18:45:34 GMT+0530 (India Standard Time)
+[debug] [2026-06-09T13:15:34.676Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-06-09T13:15:35.781Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-09T13:15:35.782Z] > authorizing via signed-in user (somansinghal06@gmail.com)
+[debug] [2026-06-09T13:15:35.782Z] [iam] checking project carbonwise-ai-in for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-06-09T13:15:35.783Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:35.783Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:35.784Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/carbonwise-ai-in:testIamPermissions [none]
+[debug] [2026-06-09T13:15:35.784Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/carbonwise-ai-in:testIamPermissions  x-goog-user-project=carbonwise-ai-in
+[debug] [2026-06-09T13:15:35.784Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carbonwise-ai-in:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-09T13:15:37.360Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/carbonwise-ai-in:testIamPermissions 200
+[debug] [2026-06-09T13:15:37.361Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carbonwise-ai-in:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-09T13:15:37.361Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:37.362Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:37.362Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/carbonwise-ai-in [none]
+[debug] [2026-06-09T13:15:38.197Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/carbonwise-ai-in 200
+[debug] [2026-06-09T13:15:38.197Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/carbonwise-ai-in {"projectId":"carbonwise-ai-in","projectNumber":"8715198073","displayName":"CarbonWise AI","name":"projects/carbonwise-ai-in","resources":{"hostingSite":"carbonwise-ai-in"},"state":"ACTIVE","etag":"1_a5dd5f5d-4f9e-4eca-848a-dee2b3e03b3e"}
+[info] 
+[info] === Deploying to 'carbonwise-ai-in'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2026-06-09T13:15:38.200Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:38.200Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:38.200Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/carbonwise-ai-in/sites/carbonwise-ai-in [none]
+[debug] [2026-06-09T13:15:39.735Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/carbonwise-ai-in/sites/carbonwise-ai-in 200
+[debug] [2026-06-09T13:15:39.735Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/carbonwise-ai-in/sites/carbonwise-ai-in {"name":"projects/carbonwise-ai-in/sites/carbonwise-ai-in","defaultUrl":"https://carbonwise-ai-in.web.app","appId":"1:8715198073:web:7641effaeb8e5537573ea8","type":"DEFAULT_SITE"}
+[debug] [2026-06-09T13:15:39.741Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:39.741Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:39.741Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions [none]
+[debug] [2026-06-09T13:15:39.741Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-06-09T13:15:41.025Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions 200
+[debug] [2026-06-09T13:15:41.025Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions {"name":"projects/8715198073/sites/carbonwise-ai-in/versions/78d6883eb4633c0b","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[carbonwise-ai-in]: beginning deploy... 
+[info] i  hosting[carbonwise-ai-in]: found 60 files in . 
+[debug] [2026-06-09T13:15:41.057Z] [hosting] uploading with 200 concurrency
+[debug] [2026-06-09T13:15:41.064Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:41.064Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:41.065Z] [hosting] hash cache [] stored for 60 files
+[debug] [2026-06-09T13:15:41.065Z] [hosting][hash queue][FINAL] {"max":6,"min":0,"avg":0.15,"active":0,"complete":60,"success":60,"errored":0,"retried":0,"total":60,"elapsed":7}
+[debug] [2026-06-09T13:15:41.065Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/8715198073/sites/carbonwise-ai-in/versions/78d6883eb4633c0b:populateFiles [none]
+[debug] [2026-06-09T13:15:41.066Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/8715198073/sites/carbonwise-ai-in/versions/78d6883eb4633c0b:populateFiles {"files":{"/test.html":"edda9bdc0ee614920518096a7f18d94584ad85a9f87cc8087f2e8513b1308da3","/readme.md":"ee84fbaee16d9ff6ee209fee9dd30b08fc07a543871c76c57fece105b66a695a","/onboarding.html":"b84f63b0166b37130757e28e7b57b1e2fc4c6a9be2767d12a8bedc53b15591f8","/firestore.rules":"f360bae342876b6360c9d58e55d1f8fdb32aaac739fe456bbdbb739ebf62cae6","/dashboard.html":"82dd625f1ed72eeb3422e11d83af9b6c18357db59d80cd977a9e3d58f1b7939c","/auth.html":"2c53d6f345f90f4fd7de6c8705df77cbdb6f41c8c63295385f86504c954f2ab1","/uploads/Untitled design.png":"6f5fbeadcaef590cfa3635652a79d7108b76648ab096487751edf863bc0b860b","/js/dashboard.js":"4298aaa6c8de9a128254df46a8d248ccd1905c5926ecfc7bfb20dd04ffccd40a","/js/core.js":"9ac151f1e147e78cf91f8fbab154d5d783417f237c057cd1b87117d8416c720a","/css/style.css":"e9441b7d4c4e62f55be1e9a38e77f71db3655062951fdc0a350cb368010f432c","/.git/index":"1a314af81b70e86d7b5c30c458e45fb452fc30c1d652588f43bf492733a67539","/.git/description":"d80717aec73322e5b189c52f5d2f13033fd07d1702a21c5395583d89cf7c8c2d","/.git/config":"0bb2b7db9998dcb4dcd0eae353189c69b38a8cba0ba04a54b03307869586ade8","/.git/HEAD":"a39dc51e21d1523cdef2091e7c7ab30a33ad42a7cd5da1f45139746e5c24b667","/.git/COMMIT_EDITMSG":"779e8a7a024fcc3a5ad384c53298436c213e88f91b0686cd3baa932ddef52490","/.git/refs/remotes/origin/main":"9b9b79ab4ca66e121ab554c3e95afe5f4217256136852f016de00c4f0093cd22","/.git/refs/remotes/origin/HEAD":"0f5d56efe56c5dcabb387d965aad58d0f60a3b7485cb9b04bef04b93bebf911e","/.git/refs/heads/main":"9b9b79ab4ca66e121ab554c3e95afe5f4217256136852f016de00c4f0093cd22","/.git/objects/fd/10b7fa24d9a980484754322b4e09fd3b08e3e2":"554cf0e8bfb5aa6e42b0f8f090d9a6658c8b951278acee0d63cd2461e1ac7416","/.git/objects/fb/6e5550d8f05615b25b4b4ff0ab0194c73c8379":"bf61e343d66d81efa87e754dec6a01ba1d738f239723cfc5e66fb001cf4891c8","/.git/objects/f3/b6342f6ed0b4332cd4540334335f8e0fee38e8":"642cfce7323f0883cb9ce16566cc987a74bd673f68e1ba24ce706d769fa9e11c","/.git/objects/eb/1b09cb563fcc79819b5fe7036fb85a4ecad50a":"a73b2b61518eca7e141e44aa55d61e37bc35170d6a7a8e41df6c5baea88b82a7","/.git/objects/e6/278f088c4d33f5e4ee888276d424353f916960":"871a8b99b12545873b9fc23a5083e3400f8c2768a0f2b91b81c92e68f01d6373","/.git/objects/e4/12dadf5a0de2946687207ade8f3d560e272f52":"45e6ab4258e3971401d3dc3269e0b4645d6255cbbad2d8ebd7978599d3899081","/.git/objects/b1/7f6310755422d220e2c975ca4387ab465c95a0":"1cd3c03a4d62ccba38062a6a5381d3b1bf9bc7ca44b945402aa70c4cc16e0c25","/.git/objects/94/1a400c07fecb9315ba2d6687fe249dbc5559ba":"da1bd4c8d9b7119bfba99df452db4d250af33738d49f6084317916f2cc939335","/.git/objects/8e/150ee874230da165b6718036fca640288b463f":"66cbf6fd9aaf91170d92d0c72b7a6ca84e4e003decdbe24d09cfec41125d7e27","/.git/objects/84/b99340efe86e8291e847e93f9ae6749d034c12":"4e6f9f6a4da85f077bf59bc95f2a78248f70782e6a9c5ac4f60cf26719d826bf","/.git/objects/84/2da8920f86621e9e683fd84a26c4c6d42b902b":"4c4a436dfe527fff8c95a85277d9dfeabb64d20308c1f1a570987fde69aedfe0","/.git/objects/70/3486e1141761047da05511a9e4c813f815806d":"169efb202e34c81e407c92d2c10cac883c9f5f3ebec45892b57e63053b3439ac","/.git/objects/64/2d70e1660b661158d8a1541da8c135884a6de8":"2b8b8b0430e81998a85535387c6e517307914d2b1744bfaee080c9037333fa41","/.git/objects/63/430da6a8a6e441970f92b2c955f6f754b97a56":"67238ecfa96ccc8a709a53447d4a29adb0af925940caf3ce15cc58b193f34ac2","/.git/objects/5b/22d1ea6c66032b20507558389718c8ab3f2461":"15b86308f3396856f29aabf73c33ab33719cf982f6a3ca461058a5a869d1dc6d","/.git/objects/50/08ddfcf53c02e82d7eee2e57c38e5672ef89f6":"422bb3640d58629c6cce7adf6aa528435b470f4ece69ac672eaf6e913be8a792","/.git/objects/0c/06f5abfed322e6387b4fc155caf5116fd920bf":"043252a1607972e779f2ac72e7088d245501bd9828e4250a29c29e6b3533959b","/.git/objects/0a/9c4db5b32ce26b9cf9b418494830514921094b":"0446c9b26ca238bff4e437bd24625b2bf22c2b2ddc0f56a8d6c9aac238040ff5","/.git/objects/03/4295e789742626e773db189fd74e0e7931b4bb":"764b910217e60ea1c9fbfeffb493dbdf74e42df5206ce20dd04fa0808eee34a7","/.git/objects/00/f86fda086549f3fa57efad084ee2c2d0d5b2c9":"423605ac2a10bd8a10d678daf417ee951d304cd68e7b52d2589f04e5c4c634ad","/.git/logs/HEAD":"88573d972c7a67a3576db90b9919b2af446766e86f6b31f4953fa7981d99df9c","/.git/logs/refs/remotes/origin/main":"d76c465f92f16caceac408d360aa8e11af380a7c75a3ff30039d85c762490484","/.git/logs/refs/remotes/origin/HEAD":"d7bf1a6488d2be41e932571dfe95bc73e782614e2942c5d36ccfeb4574570da1","/.git/logs/refs/heads/main":"88573d972c7a67a3576db90b9919b2af446766e86f6b31f4953fa7981d99df9c","/.git/info/exclude":"553543b3472f0d5661b8da5e37f54a56cc2a6e5387aea198956fe945573a605f","/.git/hooks/update.sample":"630f342d1191f0360553b2bfcae2d1801002847b63b3834404fceb59ec47de98","/.git/hooks/sendemail-validate.sample":"6584811038820a9f283d92a263b2a59f53df2548e7a9c4dddee49b063b31c8fd","/.git/hooks/push-to-checkout.sample":"2d5b63bccaa04c06503693498e71666a4bfd72341a5f3b26aaf6c5397390f784","/.git/hooks/prepare-commit-msg.sample":"233eb4792ce783ee1bbb334b9e21c04a5b1e2c9c4adce2cb06045134de8eb2c5","/.git/hooks/pre-receive.sample":"2b2ca0e45ed128d9c96b91e491cc48d64bec04b3225fbde5f0a5b7757c479ba0","/.git/hooks/pre-rebase.sample":"a8b1c92ead8342bf60b849ad99bed65089c6ccc142e467d62287307902055d72","/.git/hooks/pre-push.sample":"109e53b223e9befc5ec87b02aa5d6edd155b30f5c5678abf874508c2268077c8","/.git/hooks/pre-merge-commit.sample":"5f616dbdc6c89638f251eedc62f9535695f62e1bf67cd536dd6385c600ca97ac","/.git/hooks/pre-commit.sample":"6d6ba298a4ade37772ea29e4d203d154fda7cc1f2260eed19dbf21d53a4908ec","/.git/hooks/pre-applypatch.sample":"69bb73fa446dc095401aebeed6e9567f148a70b49dddb7007d7dd0bd2758a570","/.git/hooks/post-update.sample":"b10e235e8e631c62cf8970a23fcb25102f823e835384ecad0c7b1c463a2a6cb0","/.git/hooks/fsmonitor-watchman.sample":"d866ed1553ee626f24e0398400167b63a2516a32eda98d38d6bd8a8290089a37","/.git/hooks/commit-msg.sample":"dc524eba7da6829a8ff9e95a55d232f02a18f5d4311489246c3f65ffb7855331","/.git/hooks/applypatch-msg.sample":"21698bb9cc236ed557dfd28414c4c46a690d7fb639a6f8c3a236a941ae14243e","/.git/gk/config":"d52d764d3c5cca982852607ff66516464952c973f8d0796eebe99e1a6d3235ab","/.git/FETCH_HEAD":"f649e806c53ae5638c1693bcd062092fb5da7ff3167378bf05a109a5cf05ee7e","/index.html":"eddea4b9a4f3cd018de7c2f6b79668e886e0b5e07fac989dcd7be3864985536b"}}
+[debug] [2026-06-09T13:15:42.180Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/8715198073/sites/carbonwise-ai-in/versions/78d6883eb4633c0b:populateFiles 200
+[debug] [2026-06-09T13:15:42.181Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/8715198073/sites/carbonwise-ai-in/versions/78d6883eb4633c0b:populateFiles {"uploadRequiredHashes":["eddea4b9a4f3cd018de7c2f6b79668e886e0b5e07fac989dcd7be3864985536b"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/carbonwise-ai-in/versions/78d6883eb4633c0b/files"}
+[debug] [2026-06-09T13:15:42.182Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:42.182Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:42.182Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/carbonwise-ai-in/versions/78d6883eb4633c0b/files/eddea4b9a4f3cd018de7c2f6b79668e886e0b5e07fac989dcd7be3864985536b [none]
+[debug] [2026-06-09T13:15:42.182Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/carbonwise-ai-in/versions/78d6883eb4633c0b/files/eddea4b9a4f3cd018de7c2f6b79668e886e0b5e07fac989dcd7be3864985536b [stream]
+[debug] [2026-06-09T13:15:42.184Z] [hosting][populate queue][FINAL] {"max":1118,"min":1118,"avg":1118,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1120}
+[debug] [2026-06-09T13:15:42.184Z] [hosting] uploads queued: 1
+[info] i  hosting: uploading new files [0/1] (0%) 
+[debug] [2026-06-09T13:15:43.929Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/carbonwise-ai-in/versions/78d6883eb4633c0b/files/eddea4b9a4f3cd018de7c2f6b79668e886e0b5e07fac989dcd7be3864985536b 200
+[debug] [2026-06-09T13:15:43.930Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/carbonwise-ai-in/versions/78d6883eb4633c0b/files/eddea4b9a4f3cd018de7c2f6b79668e886e0b5e07fac989dcd7be3864985536b [stream]
+[debug] [2026-06-09T13:15:43.930Z] [hosting][upload queue][FINAL] {"max":1749,"min":1749,"avg":1749,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1749}
+[info] i  hosting: upload complete 
+[info] ✔  hosting[carbonwise-ai-in]: file upload complete 
+[debug] [2026-06-09T13:15:43.931Z] [hosting] deploy completed after 2903ms
+[debug] [2026-06-09T13:15:43.931Z] [
+  {
+    "config": {
+      "public": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "cleanUrls": true,
+      "rewrites": [
+        {
+          "source": "/",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "carbonwise-ai-in"
+    },
+    "version": "projects/8715198073/sites/carbonwise-ai-in/versions/78d6883eb4633c0b"
+  }
+]
+[info] i  hosting[carbonwise-ai-in]: finalizing version... 
+[debug] [2026-06-09T13:15:43.934Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:43.934Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:43.934Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions/78d6883eb4633c0b updateMask=status%2Cconfig
+[debug] [2026-06-09T13:15:43.935Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions/78d6883eb4633c0b {"status":"FINALIZED","config":{"rewrites":[{"glob":"/","path":"/index.html"}],"cleanUrls":true}}
+[debug] [2026-06-09T13:15:44.852Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions/78d6883eb4633c0b 200
+[debug] [2026-06-09T13:15:44.853Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions/78d6883eb4633c0b {"name":"projects/8715198073/sites/carbonwise-ai-in/versions/78d6883eb4633c0b","status":"FINALIZED","config":{"rewrites":[{"glob":"/","path":"/index.html"}],"cleanUrls":true},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-06-09T13:15:40.236724Z","createUser":{"email":"somansinghal06@gmail.com"},"finalizeTime":"2026-06-09T13:15:44.547485Z","finalizeUser":{"email":"somansinghal06@gmail.com"}}
+[debug] [2026-06-09T13:15:44.853Z] [hosting] finalized version for carbonwise-ai-in:[object Object]
+[info] ✔  hosting[carbonwise-ai-in]: version finalized 
+[info] i  hosting[carbonwise-ai-in]: releasing new version... 
+[debug] [2026-06-09T13:15:44.853Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:44.854Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:15:44.854Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/channels/live/releases versionName=projects%2F8715198073%2Fsites%2Fcarbonwise-ai-in%2Fversions%2F78d6883eb4633c0b
+[debug] [2026-06-09T13:15:44.854Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/channels/live/releases {}
+[debug] [2026-06-09T13:15:46.017Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/channels/live/releases 200
+[debug] [2026-06-09T13:15:46.017Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/channels/live/releases {"name":"projects/8715198073/sites/carbonwise-ai-in/channels/live/releases/1781010945172000","version":{"name":"projects/8715198073/sites/carbonwise-ai-in/versions/78d6883eb4633c0b","status":"FINALIZED","config":{"rewrites":[{"glob":"/","path":"/index.html"}],"cleanUrls":true},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-06-09T13:15:40.236724Z","createUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"},"finalizeTime":"2026-06-09T13:15:44.547485Z","finalizeUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"}},"type":"DEPLOY","releaseTime":"2026-06-09T13:15:45.172Z","releaseUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"}}
+[debug] [2026-06-09T13:15:46.018Z] [hosting] release: {"name":"projects/8715198073/sites/carbonwise-ai-in/channels/live/releases/1781010945172000","version":{"name":"projects/8715198073/sites/carbonwise-ai-in/versions/78d6883eb4633c0b","status":"FINALIZED","config":{"rewrites":[{"glob":"/","path":"/index.html"}],"cleanUrls":true},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-06-09T13:15:40.236724Z","createUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"},"finalizeTime":"2026-06-09T13:15:44.547485Z","finalizeUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"}},"type":"DEPLOY","releaseTime":"2026-06-09T13:15:45.172Z","releaseUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"}}
+[info] ✔  hosting[carbonwise-ai-in]: release complete 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/carbonwise-ai-in/overview
+[info] Hosting URL: https://carbonwise-ai-in.web.app
+[debug] [2026-06-09T13:16:57.431Z] ----------------------------------------------------------------------
+[debug] [2026-06-09T13:16:57.439Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only hosting --debug
+[debug] [2026-06-09T13:16:57.439Z] CLI Version:   15.19.1
+[debug] [2026-06-09T13:16:57.439Z] Platform:      darwin
+[debug] [2026-06-09T13:16:57.439Z] Node Version:  v24.14.0
+[debug] [2026-06-09T13:16:57.439Z] Time:          Tue Jun 09 2026 18:46:57 GMT+0530 (India Standard Time)
+[debug] [2026-06-09T13:16:57.439Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-06-09T13:16:58.545Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-09T13:16:58.546Z] > authorizing via signed-in user (somansinghal06@gmail.com)
+[debug] [2026-06-09T13:16:58.546Z] [iam] checking project carbonwise-ai-in for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-06-09T13:16:58.547Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:16:58.547Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:16:58.548Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/carbonwise-ai-in:testIamPermissions [none]
+[debug] [2026-06-09T13:16:58.548Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/carbonwise-ai-in:testIamPermissions  x-goog-user-project=carbonwise-ai-in
+[debug] [2026-06-09T13:16:58.548Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carbonwise-ai-in:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-09T13:17:00.127Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/carbonwise-ai-in:testIamPermissions 200
+[debug] [2026-06-09T13:17:00.127Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carbonwise-ai-in:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-09T13:17:00.128Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:00.128Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:00.129Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/carbonwise-ai-in [none]
+[debug] [2026-06-09T13:17:00.834Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/carbonwise-ai-in 200
+[debug] [2026-06-09T13:17:00.835Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/carbonwise-ai-in {"projectId":"carbonwise-ai-in","projectNumber":"8715198073","displayName":"CarbonWise AI","name":"projects/carbonwise-ai-in","resources":{"hostingSite":"carbonwise-ai-in"},"state":"ACTIVE","etag":"1_a5dd5f5d-4f9e-4eca-848a-dee2b3e03b3e"}
+[info] 
+[info] === Deploying to 'carbonwise-ai-in'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2026-06-09T13:17:00.839Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:00.839Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:00.839Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/carbonwise-ai-in/sites/carbonwise-ai-in [none]
+[debug] [2026-06-09T13:17:02.208Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/carbonwise-ai-in/sites/carbonwise-ai-in 200
+[debug] [2026-06-09T13:17:02.208Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/carbonwise-ai-in/sites/carbonwise-ai-in {"name":"projects/carbonwise-ai-in/sites/carbonwise-ai-in","defaultUrl":"https://carbonwise-ai-in.web.app","appId":"1:8715198073:web:7641effaeb8e5537573ea8","type":"DEFAULT_SITE"}
+[debug] [2026-06-09T13:17:02.212Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:02.212Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:02.212Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions [none]
+[debug] [2026-06-09T13:17:02.213Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-06-09T13:17:03.275Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions 200
+[debug] [2026-06-09T13:17:03.276Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions {"name":"projects/8715198073/sites/carbonwise-ai-in/versions/82de8e60b57883d3","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[carbonwise-ai-in]: beginning deploy... 
+[info] i  hosting[carbonwise-ai-in]: found 60 files in . 
+[debug] [2026-06-09T13:17:03.306Z] [hosting] uploading with 200 concurrency
+[debug] [2026-06-09T13:17:03.312Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:03.313Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:03.313Z] [hosting] hash cache [] stored for 60 files
+[debug] [2026-06-09T13:17:03.313Z] [hosting][hash queue][FINAL] {"max":5,"min":0,"avg":0.08333333333333333,"active":0,"complete":60,"success":60,"errored":0,"retried":0,"total":60,"elapsed":6}
+[debug] [2026-06-09T13:17:03.314Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/8715198073/sites/carbonwise-ai-in/versions/82de8e60b57883d3:populateFiles [none]
+[debug] [2026-06-09T13:17:03.314Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/8715198073/sites/carbonwise-ai-in/versions/82de8e60b57883d3:populateFiles {"files":{"/test.html":"edda9bdc0ee614920518096a7f18d94584ad85a9f87cc8087f2e8513b1308da3","/readme.md":"ee84fbaee16d9ff6ee209fee9dd30b08fc07a543871c76c57fece105b66a695a","/onboarding.html":"b84f63b0166b37130757e28e7b57b1e2fc4c6a9be2767d12a8bedc53b15591f8","/firestore.rules":"f360bae342876b6360c9d58e55d1f8fdb32aaac739fe456bbdbb739ebf62cae6","/dashboard.html":"82dd625f1ed72eeb3422e11d83af9b6c18357db59d80cd977a9e3d58f1b7939c","/auth.html":"2c53d6f345f90f4fd7de6c8705df77cbdb6f41c8c63295385f86504c954f2ab1","/uploads/Untitled design.png":"6f5fbeadcaef590cfa3635652a79d7108b76648ab096487751edf863bc0b860b","/js/dashboard.js":"4298aaa6c8de9a128254df46a8d248ccd1905c5926ecfc7bfb20dd04ffccd40a","/js/core.js":"9ac151f1e147e78cf91f8fbab154d5d783417f237c057cd1b87117d8416c720a","/css/style.css":"e9441b7d4c4e62f55be1e9a38e77f71db3655062951fdc0a350cb368010f432c","/.git/index":"1a314af81b70e86d7b5c30c458e45fb452fc30c1d652588f43bf492733a67539","/.git/description":"d80717aec73322e5b189c52f5d2f13033fd07d1702a21c5395583d89cf7c8c2d","/.git/config":"0bb2b7db9998dcb4dcd0eae353189c69b38a8cba0ba04a54b03307869586ade8","/.git/HEAD":"a39dc51e21d1523cdef2091e7c7ab30a33ad42a7cd5da1f45139746e5c24b667","/.git/FETCH_HEAD":"f649e806c53ae5638c1693bcd062092fb5da7ff3167378bf05a109a5cf05ee7e","/.git/COMMIT_EDITMSG":"779e8a7a024fcc3a5ad384c53298436c213e88f91b0686cd3baa932ddef52490","/.git/refs/remotes/origin/main":"9b9b79ab4ca66e121ab554c3e95afe5f4217256136852f016de00c4f0093cd22","/.git/refs/remotes/origin/HEAD":"0f5d56efe56c5dcabb387d965aad58d0f60a3b7485cb9b04bef04b93bebf911e","/.git/refs/heads/main":"9b9b79ab4ca66e121ab554c3e95afe5f4217256136852f016de00c4f0093cd22","/.git/objects/fd/10b7fa24d9a980484754322b4e09fd3b08e3e2":"554cf0e8bfb5aa6e42b0f8f090d9a6658c8b951278acee0d63cd2461e1ac7416","/.git/objects/fb/6e5550d8f05615b25b4b4ff0ab0194c73c8379":"bf61e343d66d81efa87e754dec6a01ba1d738f239723cfc5e66fb001cf4891c8","/.git/objects/f3/b6342f6ed0b4332cd4540334335f8e0fee38e8":"642cfce7323f0883cb9ce16566cc987a74bd673f68e1ba24ce706d769fa9e11c","/.git/objects/eb/1b09cb563fcc79819b5fe7036fb85a4ecad50a":"a73b2b61518eca7e141e44aa55d61e37bc35170d6a7a8e41df6c5baea88b82a7","/.git/objects/e6/278f088c4d33f5e4ee888276d424353f916960":"871a8b99b12545873b9fc23a5083e3400f8c2768a0f2b91b81c92e68f01d6373","/.git/objects/e4/12dadf5a0de2946687207ade8f3d560e272f52":"45e6ab4258e3971401d3dc3269e0b4645d6255cbbad2d8ebd7978599d3899081","/.git/objects/b1/7f6310755422d220e2c975ca4387ab465c95a0":"1cd3c03a4d62ccba38062a6a5381d3b1bf9bc7ca44b945402aa70c4cc16e0c25","/.git/objects/94/1a400c07fecb9315ba2d6687fe249dbc5559ba":"da1bd4c8d9b7119bfba99df452db4d250af33738d49f6084317916f2cc939335","/.git/objects/8e/150ee874230da165b6718036fca640288b463f":"66cbf6fd9aaf91170d92d0c72b7a6ca84e4e003decdbe24d09cfec41125d7e27","/.git/objects/84/b99340efe86e8291e847e93f9ae6749d034c12":"4e6f9f6a4da85f077bf59bc95f2a78248f70782e6a9c5ac4f60cf26719d826bf","/.git/objects/84/2da8920f86621e9e683fd84a26c4c6d42b902b":"4c4a436dfe527fff8c95a85277d9dfeabb64d20308c1f1a570987fde69aedfe0","/.git/objects/70/3486e1141761047da05511a9e4c813f815806d":"169efb202e34c81e407c92d2c10cac883c9f5f3ebec45892b57e63053b3439ac","/.git/objects/64/2d70e1660b661158d8a1541da8c135884a6de8":"2b8b8b0430e81998a85535387c6e517307914d2b1744bfaee080c9037333fa41","/.git/objects/63/430da6a8a6e441970f92b2c955f6f754b97a56":"67238ecfa96ccc8a709a53447d4a29adb0af925940caf3ce15cc58b193f34ac2","/.git/objects/5b/22d1ea6c66032b20507558389718c8ab3f2461":"15b86308f3396856f29aabf73c33ab33719cf982f6a3ca461058a5a869d1dc6d","/.git/objects/50/08ddfcf53c02e82d7eee2e57c38e5672ef89f6":"422bb3640d58629c6cce7adf6aa528435b470f4ece69ac672eaf6e913be8a792","/.git/objects/0c/06f5abfed322e6387b4fc155caf5116fd920bf":"043252a1607972e779f2ac72e7088d245501bd9828e4250a29c29e6b3533959b","/.git/objects/0a/9c4db5b32ce26b9cf9b418494830514921094b":"0446c9b26ca238bff4e437bd24625b2bf22c2b2ddc0f56a8d6c9aac238040ff5","/.git/objects/03/4295e789742626e773db189fd74e0e7931b4bb":"764b910217e60ea1c9fbfeffb493dbdf74e42df5206ce20dd04fa0808eee34a7","/.git/objects/00/f86fda086549f3fa57efad084ee2c2d0d5b2c9":"423605ac2a10bd8a10d678daf417ee951d304cd68e7b52d2589f04e5c4c634ad","/.git/logs/HEAD":"88573d972c7a67a3576db90b9919b2af446766e86f6b31f4953fa7981d99df9c","/.git/logs/refs/remotes/origin/main":"d76c465f92f16caceac408d360aa8e11af380a7c75a3ff30039d85c762490484","/.git/logs/refs/remotes/origin/HEAD":"d7bf1a6488d2be41e932571dfe95bc73e782614e2942c5d36ccfeb4574570da1","/.git/logs/refs/heads/main":"88573d972c7a67a3576db90b9919b2af446766e86f6b31f4953fa7981d99df9c","/.git/info/exclude":"553543b3472f0d5661b8da5e37f54a56cc2a6e5387aea198956fe945573a605f","/.git/hooks/update.sample":"630f342d1191f0360553b2bfcae2d1801002847b63b3834404fceb59ec47de98","/.git/hooks/sendemail-validate.sample":"6584811038820a9f283d92a263b2a59f53df2548e7a9c4dddee49b063b31c8fd","/.git/hooks/push-to-checkout.sample":"2d5b63bccaa04c06503693498e71666a4bfd72341a5f3b26aaf6c5397390f784","/.git/hooks/prepare-commit-msg.sample":"233eb4792ce783ee1bbb334b9e21c04a5b1e2c9c4adce2cb06045134de8eb2c5","/.git/hooks/pre-receive.sample":"2b2ca0e45ed128d9c96b91e491cc48d64bec04b3225fbde5f0a5b7757c479ba0","/.git/hooks/pre-rebase.sample":"a8b1c92ead8342bf60b849ad99bed65089c6ccc142e467d62287307902055d72","/.git/hooks/pre-push.sample":"109e53b223e9befc5ec87b02aa5d6edd155b30f5c5678abf874508c2268077c8","/.git/hooks/pre-merge-commit.sample":"5f616dbdc6c89638f251eedc62f9535695f62e1bf67cd536dd6385c600ca97ac","/.git/hooks/pre-commit.sample":"6d6ba298a4ade37772ea29e4d203d154fda7cc1f2260eed19dbf21d53a4908ec","/.git/hooks/pre-applypatch.sample":"69bb73fa446dc095401aebeed6e9567f148a70b49dddb7007d7dd0bd2758a570","/.git/hooks/post-update.sample":"b10e235e8e631c62cf8970a23fcb25102f823e835384ecad0c7b1c463a2a6cb0","/.git/hooks/fsmonitor-watchman.sample":"d866ed1553ee626f24e0398400167b63a2516a32eda98d38d6bd8a8290089a37","/.git/hooks/commit-msg.sample":"dc524eba7da6829a8ff9e95a55d232f02a18f5d4311489246c3f65ffb7855331","/.git/hooks/applypatch-msg.sample":"21698bb9cc236ed557dfd28414c4c46a690d7fb639a6f8c3a236a941ae14243e","/.git/gk/config":"d52d764d3c5cca982852607ff66516464952c973f8d0796eebe99e1a6d3235ab","/index.html":"ed32ea3191b17e93eb372d82e30fd3517c4ccaf62a0cab5dccc951e79a73bd5f"}}
+[debug] [2026-06-09T13:17:04.416Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/8715198073/sites/carbonwise-ai-in/versions/82de8e60b57883d3:populateFiles 200
+[debug] [2026-06-09T13:17:04.417Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/8715198073/sites/carbonwise-ai-in/versions/82de8e60b57883d3:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/carbonwise-ai-in/versions/82de8e60b57883d3/files"}
+[debug] [2026-06-09T13:17:04.417Z] [hosting][populate queue][FINAL] {"max":1105,"min":1105,"avg":1105,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1105}
+[debug] [2026-06-09T13:17:04.417Z] [hosting] uploads queued: 0
+[debug] [2026-06-09T13:17:04.417Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1781011024417}
+[info] i  hosting: upload complete 
+[info] ✔  hosting[carbonwise-ai-in]: file upload complete 
+[debug] [2026-06-09T13:17:04.418Z] [hosting] deploy completed after 1139ms
+[debug] [2026-06-09T13:17:04.419Z] [
+  {
+    "config": {
+      "public": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "cleanUrls": true,
+      "rewrites": [
+        {
+          "source": "/",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "carbonwise-ai-in"
+    },
+    "version": "projects/8715198073/sites/carbonwise-ai-in/versions/82de8e60b57883d3"
+  }
+]
+[info] i  hosting[carbonwise-ai-in]: finalizing version... 
+[debug] [2026-06-09T13:17:04.421Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:04.421Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:04.422Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions/82de8e60b57883d3 updateMask=status%2Cconfig
+[debug] [2026-06-09T13:17:04.422Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions/82de8e60b57883d3 {"status":"FINALIZED","config":{"rewrites":[{"glob":"/","path":"/index.html"}],"cleanUrls":true}}
+[debug] [2026-06-09T13:17:05.261Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions/82de8e60b57883d3 200
+[debug] [2026-06-09T13:17:05.261Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/versions/82de8e60b57883d3 {"name":"projects/8715198073/sites/carbonwise-ai-in/versions/82de8e60b57883d3","status":"FINALIZED","config":{"rewrites":[{"glob":"/","path":"/index.html"}],"cleanUrls":true},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-06-09T13:17:02.617277Z","createUser":{"email":"somansinghal06@gmail.com"},"finalizeTime":"2026-06-09T13:17:05.067143Z","finalizeUser":{"email":"somansinghal06@gmail.com"}}
+[debug] [2026-06-09T13:17:05.261Z] [hosting] finalized version for carbonwise-ai-in:[object Object]
+[info] ✔  hosting[carbonwise-ai-in]: version finalized 
+[info] i  hosting[carbonwise-ai-in]: releasing new version... 
+[debug] [2026-06-09T13:17:05.262Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:05.262Z] Checked if tokens are valid: true, expires at: 1781014137163
+[debug] [2026-06-09T13:17:05.262Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/channels/live/releases versionName=projects%2F8715198073%2Fsites%2Fcarbonwise-ai-in%2Fversions%2F82de8e60b57883d3
+[debug] [2026-06-09T13:17:05.263Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/channels/live/releases {}
+[debug] [2026-06-09T13:17:06.227Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/channels/live/releases 200
+[debug] [2026-06-09T13:17:06.227Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/carbonwise-ai-in/channels/live/releases {"name":"projects/8715198073/sites/carbonwise-ai-in/channels/live/releases/1781011025324000","version":{"name":"projects/8715198073/sites/carbonwise-ai-in/versions/82de8e60b57883d3","status":"FINALIZED","config":{"rewrites":[{"glob":"/","path":"/index.html"}],"cleanUrls":true},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-06-09T13:17:02.617277Z","createUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"},"finalizeTime":"2026-06-09T13:17:05.067143Z","finalizeUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"}},"type":"DEPLOY","releaseTime":"2026-06-09T13:17:05.324Z","releaseUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"}}
+[debug] [2026-06-09T13:17:06.227Z] [hosting] release: {"name":"projects/8715198073/sites/carbonwise-ai-in/channels/live/releases/1781011025324000","version":{"name":"projects/8715198073/sites/carbonwise-ai-in/versions/82de8e60b57883d3","status":"FINALIZED","config":{"rewrites":[{"glob":"/","path":"/index.html"}],"cleanUrls":true},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-06-09T13:17:02.617277Z","createUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"},"finalizeTime":"2026-06-09T13:17:05.067143Z","finalizeUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"}},"type":"DEPLOY","releaseTime":"2026-06-09T13:17:05.324Z","releaseUser":{"email":"somansinghal06@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJAYRtlPyb3EpdgRFWROJiUjFfLWpulCbB2YAHt_p8iLBxt8Q=mo"}}
+[info] ✔  hosting[carbonwise-ai-in]: release complete 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/carbonwise-ai-in/overview
+[info] Hosting URL: https://carbonwise-ai-in.web.app
