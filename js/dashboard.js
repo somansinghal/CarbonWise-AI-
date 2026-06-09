@@ -13,7 +13,8 @@ window.onload = () => {
         }
         currentUser = user;
         
-        document.getElementById('user-greeting').innerText = `Hello, ${currentUser.name}!`;
+        const displayName = currentUser.name || currentUser.displayName || currentUser.fullName || (currentUser.email ? currentUser.email.split('@')[0] : 'User');
+        document.getElementById('user-greeting').innerText = `Hello, ${displayName}!`;
         
         // Custom action select toggle
         document.getElementById('action-select').addEventListener('change', function(e) {
