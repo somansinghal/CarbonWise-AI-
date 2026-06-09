@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonWise AI | Setup Model</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .wizard-container { max-width: 800px; margin: 40px auto; }
+        .wizard-step { display: none; animation: fadeInUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .wizard-step.active { display: block; }
+        
+        .progress-wrapper { margin-bottom: 40px; }
+        .progress-track { background: rgba(255,255,255,0.05); height: 6px; border-radius: 10px; overflow: hidden; position: relative; }
+        .progress-fill { position: absolute; left: 0; top: 0; height: 100%; background: linear-gradient(90deg, var(--secondary), var(--primary)); width: 33.33%; transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 0 12px rgba(16, 185, 129, 0.5); }
+        .step-labels { display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--text-muted); }
+        .step-label.active { color: var(--primary); }
+
+        .input-icon-wrapper { position: relative; }
+        .input-icon-wrapper i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 18px; }
+        .input-icon-wrapper input { padding-left: 52px; }
+
+        .selection-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px; margin-top: 12px; }
+        .selection-card { 
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); 
+            border-radius: 16px; padding: 24px 16px; text-align: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .selection-card:hover { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.05); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .selection-card.selected { border-color: var(--primary); background: rgba(16, 185, 129, 0.1); box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2); }
+        .selection-card i { font-size: 32px; color: var(--text-muted); margin-bottom: 16px; transition: color 0.3s; }
+        .selection-card.selected i { color: var(--primary); }
+        .selection-card .title { font-weight: 600; font-size: 14px; color: var(--text-main); margin-bottom: 4px; }
+        .selection-card .desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+        .step-header { margin-bottom: 32px; text-align: center; }
+        .step-header h2 { font-size: 36px; margin-bottom: 12px; }
+        .step-header p { font-size: 16px; color: var(--text-muted); max-width: 500px; margin: 0 auto; }
+        
+        .wizard-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+    <div class="bg-orb"></div>
+
+    <div class="container wizard-container">
+        <!-- Logo -->
+        <div class="text-center animate-fade-up" style="margin-bottom: 40px;">
+            <div class="logo" style="justify-content: center;">
+                <i class="fa-solid fa-leaf text-gradient"></i> CarbonWise AI
+            </div>
+        </div>
+
+        <div class="glass-panel animate-fade-up delay-1" style="padding: 40px;">
+            
+            <!-- Progress Bar -->
+            <div class="progress-wrapper">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="step-labels">
+                    <span class="step-label active" id="label-1">Mobility</span>
+                    <span class="step-label" id="label-2">Energy</span>
+                    <span class="step-label" id="label-3">Lifestyle</span>
+                </div>
+            </div>
+
+            <form id="wizard-form" onsubmit="calculateBaseline(event)">
+                
+                <!-- STEP 1: TRANSPORT -->
+                <div class="wizard-step active" id="step-1">
+                    <div class="step-header">
+                        <div class="hero-pill"><i class="fa-solid fa-car-side"></i> Step 1 of 3</div>
+                        <h2>How do you move?</h2>
+                        <p>Tell us about your weekly and annual travel habits. Transportation is often the largest slice of a carbon footprint.</p>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Weekly Vehicle Travel (km)</label>
+                            <div class="input-icon-wrapper">
+                                <i class="fa-solid fa-car"></i>
+                                <input type="number" id="vehicle" required placeholder="e.g., 50" min="0">
+                            </div>
+                            <p style="font-size: 12px; margin-top: 8px;">Include driving or riding in fossil-fuel cars.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Flights per Year</label>
+                            <div class="input-icon-wrapper">
+                                <i class="fa-solid fa-plane"></i>
+                                <input type="number" id="flights" required placeholder="e.g., 2" min="0">
+                            </div>
+                            <p style="font-size: 12px; margin-top: 8px;">Average round-trip flights.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2: ENERGY -->
+                <div class="wizard-step" id="step-2">
+                    <div class="step-header">
+                        <div class="hero-pill" style="background: rgba(245, 158, 11, 0.1); color: var(--warning); border-color: rgba(245, 158, 11, 0.2);"><i class="fa-solid fa-bolt"></i> Step 2 of 3</div>
+                        <h2>Powering your home</h2>
+                        <p>Your electricity consumption dictates your indirect emissions. Check your monthly utility bill for a rough estimate.</p>
+                    </div>
+
+                    <div class="form-group" style="max-width: 400px; margin: 0 auto;">
+                        <label>Monthly Electricity Usage (kWh units)</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-plug"></i>
+                            <input type="number" id="electricity" required placeholder="e.g., 200" min="0">
+                        </div>
+                        <p style="font-size: 12px; margin-top: 8px; text-align: center;">Average home uses ~250-400 kWh/mo.</p>
+                    </div>
+                </div>
+
+                <!-- STEP 3: LIFESTYLE -->
+                <div class="wizard-step" id="step-3">
+                    <div class="step-header">
+                        <div class="hero-pill" style="background: rgba(52, 211, 153, 0.1); color: var(--secondary); border-color: rgba(52, 211, 153, 0.2);"><i class="fa-solid fa-apple-whole"></i> Step 3 of 3</div>
+                        <h2>Your daily lifestyle</h2>
+                        <p>Diet and shopping habits make up the final sector of your footprint. Help us personalize the AI model for you.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="margin-bottom: 12px; text-align: center;">Primary Diet Type</label>
+                        <input type="hidden" id="diet" value="meat-average">
+                        <div class="selection-grid" id="diet-grid">
+                            <div class="selection-card" onclick="selectCard('diet-grid', 'diet', 'vegan', this)">
+                                <i class="fa-solid fa-leaf"></i>
+                                <div class="title">Vegan</div>
+                                <div class="desc">No animal products</div>
+                            </div>
+                            <div class="selection-card" onclick="selectCard('diet-grid', 'diet', 'vegetarian', this)">
+                                <i class="fa-solid fa-carrot"></i>
+                                <div class="title">Vegetarian</div>
+                                <div class="desc">Dairy & eggs only</div>
+                            </div>
+                            <div class="selection-card" onclick="selectCard('diet-grid', 'diet', 'pescatarian', this)">
+                                <i class="fa-solid fa-fish"></i>
+                                <div class="title">Pescatarian</div>
+                                <div class="desc">Fish & seafood</div>
+                            </div>
+                            <div class="selection-card selected" onclick="selectCard('diet-grid', 'diet', 'meat-average', this)">
+                                <i class="fa-solid fa-drumstick-bite"></i>
+                                <div class="title">Average Meat</div>
+                                <div class="desc">Meat 3-4x a week</div>
+                            </div>
+                            <div class="selection-card" onclick="selectCard('diet-grid', 'diet', 'meat-heavy', this)">
+                                <i class="fa-solid fa-burger"></i>
+                                <div class="title">Heavy Meat</div>
+                                <div class="desc">Meat daily</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 32px;">
+                        <label style="margin-bottom: 12px; text-align: center;">Shopping Frequency</label>
+                        <input type="hidden" id="shopping" value="medium">
+                        <div class="selection-grid" id="shopping-grid" style="grid-template-columns: repeat(3, 1fr);">
+                            <div class="selection-card" onclick="selectCard('shopping-grid', 'shopping', 'low', this)">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <div class="title">Minimalist</div>
+                                <div class="desc">Essentials only</div>
+                            </div>
+                            <div class="selection-card selected" onclick="selectCard('shopping-grid', 'shopping', 'medium', this)">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <div class="title">Average</div>
+                                <div class="desc">Standard purchases</div>
+                            </div>
+                            <div class="selection-card" onclick="selectCard('shopping-grid', 'shopping', 'high', this)">
+                                <i class="fa-solid fa-tags"></i>
+                                <div class="title">Frequent</div>
+                                <div class="desc">High consumer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wizard Navigation -->
+                <div class="wizard-nav">
+                    <button type="button" class="btn btn-outline" id="btn-prev" onclick="prevStep()" style="visibility: hidden;">
+                        <i class="fa-solid fa-arrow-left"></i> Back
+                    </button>
+                    <button type="button" class="btn" id="btn-next" onclick="nextStep()">
+                        Continue <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <button type="submit" class="btn hidden" id="btn-submit" style="background: linear-gradient(135deg, var(--secondary), var(--primary));">
+                        <i class="fa-solid fa-sparkles"></i> Build AI Model
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/core.js"></script>
+    
+    <script>
+        Auth.onReady(user => {
+            if(!user) window.location.href = 'auth.html';
+            else if(user.hasBaseline) window.location.href = 'dashboard.html';
+        });
+
+        // Wizard State
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        // Custom Card Selector Logic
+        function selectCard(gridId, inputId, value, cardElement) {
+            document.getElementById(inputId).value = value;
+            const cards = document.getElementById(gridId).querySelectorAll('.selection-card');
+            cards.forEach(c => c.classList.remove('selected'));
+            cardElement.classList.add('selected');
+        }
+
+        // Validate required inputs on current step
+        function validateStep() {
+            const stepElement = document.getElementById(`step-${currentStep}`);
+            const inputs = stepElement.querySelectorAll('input[required]');
+            let isValid = true;
+            inputs.forEach(input => {
+                if(!input.reportValidity()) isValid = false;
+            });
+            return isValid;
+        }
+
+        // Move to next step
+        function nextStep() {
+            if(!validateStep()) return;
+            if(currentStep < totalSteps) {
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                currentStep++;
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                updateWizardUI();
+            }
+        }
+
+        // Move to prev step
+        function prevStep() {
+            if(currentStep > 1) {
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                currentStep--;
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                updateWizardUI();
+            }
+        }
+
+        // Update progress bar, labels, and buttons
+        function updateWizardUI() {
+            // Progress Bar
+            document.getElementById('progress-fill').style.width = `${(currentStep / totalSteps) * 100}%`;
+            
+            // Labels
+            for(let i=1; i<=totalSteps; i++) {
+                if(i <= currentStep) document.getElementById(`label-${i}`).classList.add('active');
+                else document.getElementById(`label-${i}`).classList.remove('active');
+            }
+
+            // Buttons
+            document.getElementById('btn-prev').style.visibility = currentStep === 1 ? 'hidden' : 'visible';
+            
+            if(currentStep === totalSteps) {
+                document.getElementById('btn-next').classList.add('hidden');
+                document.getElementById('btn-submit').classList.remove('hidden');
+            } else {
+                document.getElementById('btn-next').classList.remove('hidden');
+                document.getElementById('btn-submit').classList.add('hidden');
+            }
+        }
+
+        // Form Submit Handler
+        async function calculateBaseline(e) {
+            e.preventDefault();
+            if(!validateStep()) return;
+
+            const btn = document.getElementById('btn-submit');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Initializing AI...';
+
+            const vehicle = parseFloat(document.getElementById('vehicle').value);
+            const electricity = parseFloat(document.getElementById('electricity').value);
+            const flights = parseFloat(document.getElementById('flights').value);
+            const diet = document.getElementById('diet').value;
+            const shopping = document.getElementById('shopping').value;
+
+            // Calculations
+            const transportCO2 = vehicle * 0.19 * 4.33; 
+            const electricityCO2 = electricity * 0.85; 
+            const flightCO2 = (flights * 250) / 12; 
+
+            let dietCO2 = 150;
+            if(diet === 'vegan') dietCO2 = 60;
+            if(diet === 'vegetarian') dietCO2 = 90;
+            if(diet === 'pescatarian') dietCO2 = 110;
+            if(diet === 'meat-heavy') dietCO2 = 250;
+
+            let shoppingCO2 = 50;
+            if(shopping === 'low') shoppingCO2 = 20;
+            if(shopping === 'high') shoppingCO2 = 120;
+
+            const monthlyTotal = transportCO2 + electricityCO2 + flightCO2 + dietCO2 + shoppingCO2;
+            const annualTotal = monthlyTotal * 12;
+
+            try {
+                await Auth.updateCurrentUser({
+                    hasBaseline: true,
+                    baselineFootprint: annualTotal,
+                    currentFootprint: annualTotal,
+                    savedTotal: 0,
+                    points: 10,
+                    history: [],
+                    emissionsBreakdown: {
+                        transport: transportCO2 * 12,
+                        electricity: electricityCO2 * 12,
+                        flight: flightCO2 * 12,
+                        lifestyle: (dietCO2 + shoppingCO2) * 12
+                    }
+                });
+
+                showToast("Baseline calculated! Preparing your workspace...");
+                setTimeout(() => { window.location.href = 'dashboard.html'; }, 1200);
+            } catch (err) {
+                showToast("Failed to save data. Try again.", "error");
+                btn.innerHTML = originalText;
+            }
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a08f594368095ed5',t:'MTc4MDk5OTg0OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

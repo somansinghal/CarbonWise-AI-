@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonWise AI | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="bg-orb"></div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="water-glass animate-fade-up">
+            <div class="logo">
+                <i class="fa-solid fa-leaf text-gradient"></i> CarbonWise
+            </div>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <span id="user-greeting" style="font-weight: 500; font-size: 15px; color: var(--text-muted);"></span>
+                <button class="btn btn-outline" style="padding: 10px 16px; font-size: 13px;" onclick="Auth.logout()">Log out</button>
+            </div>
+        </nav>
+
+        <div style="margin-bottom: 32px;" class="animate-fade-up delay-1">
+            <h1 style="font-size: 32px; margin-bottom: 8px;">Overview</h1>
+            <p>Track your real-time carbon reduction progress.</p>
+        </div>
+
+        <!-- Top Metrics -->
+        <div class="grid-3 animate-fade-up delay-1" style="margin-bottom: 32px;">
+            <div class="glass-panel metric-card" style="border-top: 3px solid rgba(255,255,255,0.1);">
+                <div class="metric-label">Initial Baseline (Annual)</div>
+                <div class="metric-value" id="val-baseline">0 <span style="font-size: 16px; font-weight: 600; color: var(--text-muted);">kg</span></div>
+            </div>
+            <div class="glass-panel metric-card" style="border-top: 3px solid var(--primary); background: rgba(16, 185, 129, 0.03); box-shadow: 0 12px 32px rgba(16, 185, 129, 0.08);">
+                <div class="metric-label" style="color: var(--primary);">Total Carbon Saved</div>
+                <div class="metric-value text-gradient" id="val-saved">0 <span style="font-size: 16px; font-weight: 600;">kg</span></div>
+            </div>
+            <div class="glass-panel metric-card" style="border-top: 3px solid var(--secondary);">
+                <div class="metric-label">Current Projected (Annual)</div>
+                <div class="metric-value" id="val-current">0 <span style="font-size: 16px; font-weight: 600; color: var(--text-muted);">kg</span></div>
+            </div>
+        </div>
+
+        <div class="grid-2 animate-fade-up delay-2">
+            
+            <!-- Log Action Form -->
+            <section class="glass-panel" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h3 style="margin-bottom: 8px; font-size: 20px;">Track New Actions</h3>
+                    <p style="font-size: 14px; margin-bottom: 24px;">Log eco-friendly actions to decrease your footprint.</p>
+                    
+                    <form id="log-action-form" onsubmit="logSavingsAction(event)">
+                        <div class="form-group">
+                            <select id="action-select" required>
+                                <option value="" disabled selected>Select an activity to log...</option>
+                                <option value="walk_bike" data-kg="2.5">Walked/Biked instead of driving (-2.5 kg)</option>
+                                <option value="public_transit" data-kg="4.0">Took public transit (-4.0 kg)</option>
+                                <option value="plant_meal" data-kg="1.5">Ate a plant-based meal (-1.5 kg)</option>
+                                <option value="line_dry" data-kg="2.0">Line-dried clothes (-2.0 kg)</option>
+                                <option value="unplug" data-kg="0.5">Unplugged idle electronics (-0.5 kg)</option>
+                                <option value="custom">Enter a custom action...</option>
+                            </select>
+                        </div>
+                        <div id="custom-action-group" class="form-group hidden">
+                            <input type="number" id="custom-kg" placeholder="Estimated kg CO₂ saved (e.g., 5.5)" step="0.1" min="0">
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Record Action</button>
+                    </form>
+                </div>
+                
+                <div style="margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <h4 style="font-size: 14px; color: var(--text-main);">Recent Activity</h4>
+                    </div>
+                    <div id="activity-log" style="max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 8px;">
+                        <!-- JS injected -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chart -->
+            <section class="glass-panel">
+                <h3 style="margin-bottom: 8px; font-size: 20px;">Savings Trajectory</h3>
+                <p style="font-size: 14px; margin-bottom: 24px;">Visualizing your cumulative carbon reduction.</p>
+                <div class="chart-container">
+                    <canvas id="savingsChart"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <div class="grid-2 animate-fade-up delay-3" style="margin-top: 32px;">
+            <!-- AI Analyzer -->
+            <section class="glass-panel">
+                <div class="hero-pill" style="margin-bottom: 16px; background: rgba(52, 211, 153, 0.1); color: var(--secondary); border: none;"><i class="fa-solid fa-sparkles"></i> Powered by Gemini 1.5</div>
+                <h3 style="font-size: 20px; margin-bottom: 8px;">AI Diagnostic</h3>
+                <p style="font-size: 14px; margin-bottom: 24px;">Generate an automated, deep-dive analysis of your current emissions state.</p>
+                <button class="btn" id="btn-analyze" onclick="analyzeFootprint()">Run Diagnostic</button>
+                <div class="loader" id="loader-analyze"></div>
+                <div class="ai-result hidden" id="result-analyze"></div>
+            </section>
+
+            <!-- Gamification -->
+            <section class="glass-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <h3 style="font-size: 20px;">Achievements</h3>
+                    <div style="font-weight: 700; background: rgba(16, 185, 129, 0.1); color: var(--primary); padding: 6px 14px; border-radius: 100px; font-size: 14px;">
+                        <span id="user-points">0</span> Points
+                    </div>
+                </div>
+                <p style="font-size: 14px; margin-bottom: 24px;">Unlock milestones by logging savings daily.</p>
+                
+                <div class="badge-grid">
+                    <div class="badge" id="badge-1" title="Log 1st Action (50 Pts)">
+                        <i class="fa-solid fa-seedling"></i>
+                        <div style="font-size: 13px; font-weight: 600; color: #fff;">Starter Sprout</div>
+                    </div>
+                    <div class="badge" id="badge-2" title="Save 20kg (150 Pts)">
+                        <i class="fa-solid fa-tree"></i>
+                        <div style="font-size: 13px; font-weight: 600; color: #fff;">Green Warrior</div>
+                    </div>
+                    <div class="badge" id="badge-3" title="Save 50kg (300 Pts)">
+                        <i class="fa-solid fa-wind"></i>
+                        <div style="font-size: 13px; font-weight: 600; color: #fff;">Carbon Crusher</div>
+                    </div>
+                    <div class="badge" id="badge-4" title="Save 100kg (500 Pts)">
+                        <i class="fa-solid fa-earth-americas fa-spin" style="animation-duration: 8s;"></i>
+                        <div style="font-size: 13px; font-weight: 600; color: #fff;">Planet Guardian</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="water-glass animate-fade-up delay-3">
+            <div style="margin-bottom: 16px; font-weight: 800; font-size: 20px;">
+                <i class="fa-solid fa-leaf text-gradient"></i> CarbonWise AI
+            </div>
+            <p style="font-size: 13px; opacity: 0.5;">&copy; 2026 CarbonWise AI. Hackathon Submission.</p>
+        </footer>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-widget">
+        <div class="glass-panel" id="chatbot-window" style="padding: 0; overflow: hidden;">
+            <div style="background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 20px; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                    <span style="width: 8px; height: 8px; background: var(--primary); border-radius: 50%; display: inline-block; box-shadow: 0 0 8px var(--primary);"></span> 
+                    EcoBot Assistant
+                </span>
+                <i class="fa-solid fa-xmark text-muted" style="cursor: pointer; transition: color 0.2s;" onclick="toggleChat()" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'"></i>
+            </div>
+            <div id="chat-messages">
+                <div class="msg bot">Hello! I'm EcoBot. I'm connected to Gemini AI. Need sustainability ideas for today?</div>
+            </div>
+            <div id="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Message EcoBot..." onkeypress="if(event.key === 'Enter') sendChat()">
+                <button onclick="sendChat()"><i class="fa-solid fa-arrow-up"></i></button>
+            </div>
+        </div>
+        <div id="chatbot-toggle" onclick="toggleChat()">
+            <i class="fa-solid fa-sparkles"></i>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/dashboard.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a08f5a073c0e5ed5',t:'MTc4MDk5OTg4MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

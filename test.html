@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="testGemini()">Test Gemini</button>
+
+<script>
+    async function testGemini() {
+    
+    const API_KEY = "";
+
+    if (!API_KEY || API_KEY.trim() === "") {
+        alert("Please paste your Gemini API key first.");
+        return;
+    }
+    
+    try {
+    
+    const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`,
+    {
+    method: "POST",
+    headers: {
+    "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+    contents: [{
+    parts: [{
+        text: "Say hello in one short sentence."
+    }]
+    }]
+    })
+    }
+    );
+    
+    const data = await response.json();
+    
+    console.log("FULL RESPONSE:", data);
+
+    if (data.error) {
+        alert(`Gemini Error: ${data.error.message}`);
+        console.log(data);
+        return;
+    }
+
+    const answer = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received.";
+
+    console.log("Gemini Answer:", answer);
+    document.body.insertAdjacentHTML('beforeend', `<div id="result" style="margin-top:20px;padding:10px;border:1px solid #ccc;">${answer}</div>`);
+    
+    } catch(error) {
+    
+    console.error(error);
+    alert(error.message);
+    
+    }
+    
+    }
+    </script>
+</body>
+</html>
