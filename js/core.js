@@ -2,22 +2,23 @@
 // CONFIGURATION & CORE UTILS
 // ==========================================
 // INSERT YOUR GEMINI API KEY HERE
-const API_KEY = ""; 
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+const API_KEY = "";
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
 // FIREBASE CONFIGURATION
 // Replace with your Firebase Project Config
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-};
+    apiKey: "",
+    authDomain: "carbonwise-ai-in.firebaseapp.com",
+    projectId: "carbonwise-ai-in",
+    storageBucket: "carbonwise-ai-in.firebasestorage.app",
+    messagingSenderId: "8715198073",
+    appId: "1:8715198073:web:7641effaeb8e5537573ea8",
+    measurementId: "G-TFKFHE24WP"
+  };
 
 let auth, db;
-const isFirebaseConfigured = firebaseConfig.apiKey !== "YOUR_API_KEY";
+const isFirebaseConfigured = !!firebaseConfig.apiKey && firebaseConfig.apiKey !== "PASTE_YOUR_FIREBASE_WEB_API_KEY_HERE";
 
 if (isFirebaseConfigured) {
     firebase.initializeApp(firebaseConfig);
@@ -37,9 +38,23 @@ const Auth = {
 
         auth.onAuthStateChanged(async (user) => {
             if (user) {
-                const doc = await db.collection('users').doc(user.uid).get();
+                let doc;
+                try {
+                    doc = await db.collection('users').doc(user.uid).get();
+                } catch (error) {
+                    console.error('Firestore error:', error);
+                    showToast('Firestore connection failed. Check Firebase configuration and Firestore rules.', 'error');
+                    callback({ uid: user.uid, email: user.email, hasBaseline: false });
+                    return;
+                }
                 if (doc.exists) {
-                    callback({ uid: user.uid, email: user.email, ...doc.data() });
+                    callback({
+                        uid: user.uid,
+                        email: user.email,
+                        displayName: user.displayName,
+                        name: doc.data().name || user.displayName || (user.email ? user.email.split('@')[0] : 'User'),
+                        ...doc.data()
+                    });
                 } else {
                     callback({ uid: user.uid, email: user.email, hasBaseline: false });
                 }
@@ -64,7 +79,12 @@ const Auth = {
             baselineFootprint: 0, 
             history: [] 
         };
-        await db.collection('users').doc(cred.user.uid).set(newUser);
+        try {
+            await db.collection('users').doc(cred.user.uid).set(newUser);
+        } catch (error) {
+            console.error('Firestore write error:', error);
+            throw new Error('Unable to create user profile in Firestore. Ensure Firestore Database is created and rules allow writes.');
+        }
         return cred.user;
     },
     
@@ -80,7 +100,13 @@ const Auth = {
         const user = cred.user;
         
         // Check if user exists in Firestore
-        const doc = await db.collection('users').doc(user.uid).get();
+        let doc;
+        try {
+            doc = await db.collection('users').doc(user.uid).get();
+        } catch (error) {
+            console.error('Firestore error:', error);
+            throw new Error('Firestore is unavailable. Check Firestore setup and rules.');
+        }
         if (!doc.exists) {
             // Initialize new user if it's their first time logging in with Google
             const newUser = { 
@@ -108,14 +134,19 @@ const Auth = {
         if (!isFirebaseConfigured) return;
         const user = auth.currentUser;
         if (user) {
-            await db.collection('users').doc(user.uid).update(updates);
+            try {
+                await db.collection('users').doc(user.uid).set(updates, { merge: true });
+            } catch (error) {
+                console.error('Firestore update error:', error);
+                throw error;
+            }
         }
     }
 };
 
 // Gemini API Fetcher
 async function fetchGemini(prompt, sysInstruction = "") {
-    if(!API_KEY) {
+    if(!API_KEY || API_KEY === "PASTE_YOUR_GEMINI_API_KEY_HERE") {
         return "API_KEY is missing. Please add your Gemini API Key in js/core.js.";
     }
 
